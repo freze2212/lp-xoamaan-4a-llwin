@@ -66,6 +66,7 @@ function saveCodes(codes) {
 }
 
 let codesDB = loadCodes();
+let pendingRequestsDB = [];
 
 // --- ADMIN AUTH ---
 app.post('/api/admin/login', (req, res) => {
