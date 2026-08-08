@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" width="240" height="90">
+  <defs>
+    <linearGradient id="go88Bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d1b00"/>
+      <stop offset="50%" stop-color="#140a00"/>
+      <stop offset="100%" stop-color="#3d2400"/>
+    </linearGradient>
+    <linearGradient id="go88TextGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#ffee58"/>
+      <stop offset="70%" stop-color="#ffb300"/>
+      <stop offset="100%" stop-color="#ff6f00"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="90" rx="10" fill="url(#go88Bg)" stroke="#ffb300" stroke-width="2"/>
+  <rect x="12" y="10" width="216" height="70" rx="8" fill="none" stroke="#e65100" stroke-width="1.5"/>
+  <text x="120" y="60" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="52" fill="url(#go88TextGrad)" stroke="#3e1800" stroke-width="2" text-anchor="middle" letter-spacing="2">GO88</text>
+</svg>

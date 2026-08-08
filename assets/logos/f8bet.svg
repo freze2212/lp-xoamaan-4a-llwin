@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" width="240" height="90">
+  <rect width="240" height="90" rx="8" fill="#ffffff"/>
+  <g transform="translate(15, 18)">
+    <rect width="52" height="54" rx="8" fill="#0066cc"/>
+    <text x="26" y="39" font-family="'Arial Black', sans-serif" font-weight="900" font-size="28" fill="#ffffff" text-anchor="middle">F8</text>
+  </g>
+  <text x="76" y="58" font-family="Arial, sans-serif" font-weight="900" font-size="38" fill="#0056b3">F8BET</text>
+  <path d="M175 58 L215 50 L220 54 L175 62 Z" fill="#d32f2f"/>
+</svg>

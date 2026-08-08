@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" width="240" height="90">
+  <defs>
+    <linearGradient id="uBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8e1"/>
+      <stop offset="100%" stop-color="#ffecb3"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="90" rx="8" fill="url(#uBg)"/>
+  <g transform="translate(16, 18)">
+    <rect width="48" height="52" rx="24" fill="#d32f2f" stroke="#ffb300" stroke-width="3"/>
+    <text x="24" y="37" font-family="'Arial Black', sans-serif" font-weight="900" font-size="28" fill="#ffffff" text-anchor="middle">U</text>
+  </g>
+  <text x="76" y="60" font-family="'Arial Black', sans-serif" font-weight="900" font-size="44" fill="#d32f2f" letter-spacing="1">888</text>
+</svg>

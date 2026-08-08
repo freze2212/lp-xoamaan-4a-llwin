@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" width="240" height="90">
+  <defs>
+    <linearGradient id="sunBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3e1a00"/>
+      <stop offset="50%" stop-color="#1f0c00"/>
+      <stop offset="100%" stop-color="#4a2200"/>
+    </linearGradient>
+    <linearGradient id="sunGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff176"/>
+      <stop offset="50%" stop-color="#fbc02d"/>
+      <stop offset="100%" stop-color="#f57f17"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="90" rx="10" fill="url(#sunBg)" stroke="#ffab00" stroke-width="1.5"/>
+  <!-- Sunburst logo -->
+  <g transform="translate(18, 16)">
+    <circle cx="25" cy="25" r="14" fill="url(#sunGold)"/>
+    <!-- Sun rays -->
+    <path d="M25 3 L25 8 M25 42 L25 47 M3 25 L8 25 M42 25 L47 25 M9 9 L13 13 M37 37 L41 41 M9 41 L13 37 M37 9 L41 13" stroke="url(#sunGold)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <text x="75" y="58" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="40" fill="url(#sunGold)" letter-spacing="1">SUNWIN</text>
+</svg>

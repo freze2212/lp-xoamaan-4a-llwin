@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" width="240" height="90">
+  <defs>
+    <linearGradient id="nkBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#004d40"/>
+      <stop offset="100%" stop-color="#00251a"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="90" rx="10" fill="url(#nkBg)" stroke="#00bfa5" stroke-width="1.5"/>
+  <text x="120" y="60" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="50" fill="#00e676" text-anchor="middle" letter-spacing="2">NK88</text>
+</svg>

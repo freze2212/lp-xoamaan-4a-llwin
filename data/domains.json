@@ -1,0 +1,25 @@
+{
+  "default": {
+    "targetUrl": "https://mm86f.vip",
+    "telegramUrl": "https://t.me/ITXOAMAAN",
+    "telegramUsername": "@ITXOAMAAN",
+    "codeTelegramUrl": "https://t.me/TLITMAAN",
+    "codeTelegramUsername": "@TLITMAAN"
+  },
+  "domains": {
+    "xoaipmaan.com": {
+      "targetUrl": "https://mm86f.vip",
+      "telegramUrl": "https://t.me/ITXOAMAAN",
+      "telegramUsername": "@ITXOAMAAN",
+      "codeTelegramUrl": "https://t.me/TLITMAAN",
+      "codeTelegramUsername": "@TLITMAAN"
+    },
+    "xoaipmaan.net": {
+      "targetUrl": "https://m88qt.uk",
+      "telegramUrl": "https://t.me/it_wed",
+      "telegramUsername": "@it_wed",
+      "codeTelegramUrl": "https://t.me/KhanhLinh_8M",
+      "codeTelegramUsername": "@KhanhLinh_8M"
+    }
+  }
+}

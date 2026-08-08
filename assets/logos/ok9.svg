@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" width="240" height="90">
+  <defs>
+    <linearGradient id="ok9Bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#003366"/>
+      <stop offset="100%" stop-color="#001a33"/>
+    </linearGradient>
+    <linearGradient id="ok9Orange" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff9800"/>
+      <stop offset="100%" stop-color="#f57c00"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="90" rx="10" fill="url(#ok9Bg)" stroke="#0288d1" stroke-width="1.5"/>
+  <!-- OK9 Shield Badge -->
+  <g transform="translate(18, 16)">
+    <rect width="50" height="54" rx="10" fill="url(#ok9Orange)"/>
+    <text x="25" y="38" font-family="'Arial Black', sans-serif" font-weight="900" font-size="24" fill="#ffffff" text-anchor="middle">OK</text>
+  </g>
+  <text x="78" y="60" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="52" fill="#ff9800" letter-spacing="1">OK9</text>
+</svg>

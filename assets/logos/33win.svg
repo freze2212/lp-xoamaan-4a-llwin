@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" width="240" height="90">
+  <defs>
+    <linearGradient id="winBg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b1115"/>
+      <stop offset="50%" stop-color="#54161c"/>
+      <stop offset="100%" stop-color="#2d0c0f"/>
+    </linearGradient>
+    <linearGradient id="goldText" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff176"/>
+      <stop offset="50%" stop-color="#ffd54f"/>
+      <stop offset="100%" stop-color="#ffb300"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="90" rx="8" fill="url(#winBg)"/>
+  <g transform="translate(14, 20)">
+    <path d="M12 30 L5 10 L17 18 L25 6 L33 18 L45 10 L38 30 Z" fill="url(#goldText)" stroke="#ff8f00" stroke-width="1"/>
+    <circle cx="5" cy="8" r="2.5" fill="#fff"/>
+    <circle cx="25" cy="4" r="3" fill="#fff"/>
+    <circle cx="45" cy="8" r="2.5" fill="#fff"/>
+    <rect x="10" y="32" width="30" height="5" rx="2" fill="#ffd54f"/>
+  </g>
+  <text x="68" y="58" font-family="'Arial Black', sans-serif" font-weight="900" font-size="40" fill="url(#goldText)" letter-spacing="1">33WIN</text>
+</svg>

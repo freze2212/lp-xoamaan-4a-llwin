@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" width="240" height="90">
+  <rect width="240" height="90" rx="8" fill="#ffffff"/>
+  <g transform="translate(12, 22)">
+    <path d="M0 8 L30 8 L38 22 L8 22 Z" fill="#0091ea"/>
+    <path d="M5 26 L35 26 L42 40 L12 40 Z" fill="#00b0ff"/>
+  </g>
+  <text x="65" y="60" font-family="'Arial Black', sans-serif" font-weight="900" font-size="44" fill="#0077c2" letter-spacing="1">GK88</text>
+</svg>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XOAMAGG // OVERRIDE SYSTEM</title>
+    <style>
+        /* Import font Terminal */
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            background-color: #010806;
+            font-family: 'Share Tech Mono', monospace;
+            color: #00ff88;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* ---------------- MATRIX BACKGROUND ---------------- */
+        #matrix {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        /* ---------------- RAW HEX DUMP BACKGROUND ---------------- */
+        .hex-bg {
+            position: absolute;
+            right: 0; top: 0;
+            width: 30%; height: 100%;
+            overflow: hidden;
+            opacity: 0.2;
+            font-size: 0.8rem;
+            color: #136357;
+            word-wrap: break-word;
+            z-index: 0;
+            text-align: right;
+            padding-right: 15px;
+            font-family: monospace;
+        }
+
+        /* ---------------- HIỆU ỨNG MÀN HÌNH CRT CŨ ---------------- */
+        .crt-effect {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(37, 196, 172, 0.06), rgba(0, 255, 200, 0.02), rgba(0, 150, 255, 0.06));
+            background-size: 100% 4px, 6px 100%;
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: inset 0 0 120px rgba(0,0,0,0.95);
+        }
+
+        /* ---------------- BẢNG TELEMETRY HUD GÓC TRÁI ---------------- */
+        .hud {
+            position: absolute;
+            top: 25px; left: 25px;
+            z-index: 5;
+            font-size: 0.9rem;
+            color: #25c4ac;
+            text-shadow: 0 0 5px #25c4ac;
+            line-height: 1.6;
+            opacity: 0.9;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            border-left: 2px solid #25c4ac;
+            padding-left: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .hud, .hex-bg { display: none !important; }
+            .modal { width: 95%; padding: 2px; }
+            .modal-inner { padding: 20px 15px; }
+            .header-title { font-size: 1.1rem; margin-bottom: 15px; letter-spacing: 1px; }
+            .status-row { font-size: 0.95rem; margin-bottom: 8px; }
+            .bar-container { height: 16px; margin-bottom: 15px; }
+            .terminal { height: 260px; font-size: 0.85rem; line-height: 1.6; }
+            .prefix { min-width: 85px; font-size: 0.75rem; margin-right: 8px; }
+            .message.hl { font-size: 0.9rem; }
+            .shield-icon { font-size: 2.2rem; margin-bottom: 5px; }
+            .success-text { 
+                font-size: 1.15rem; 
+                letter-spacing: 0px; 
+                margin-bottom: 15px; 
+                line-height: 1.3; 
+            }
+            .btn-hack { 
+                padding: 12px 10px; 
+                font-size: 0.95rem; 
+                width: 100%; 
+                margin: 0 auto 15px auto;
+                box-sizing: border-box; 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                line-height: normal;
+            }
+            .success-features { 
+                font-size: 0.75rem; 
+                line-height: 1.4; 
+                padding: 12px; 
+                margin-bottom: 5px; 
+                text-align: left;
+                width: 95%;
+            }
+            .success-features div { padding-bottom: 6px; }
+        }
+
+        .hud span { color: #fff; }
+        .blink-red { color: #ff3333 !important; text-shadow: 0 0 10px red !important; animation: blinkWarning 1s infinite; font-weight: bold;}
+        @keyframes blinkWarning { 0%, 100% {opacity:1;} 50% {opacity:0;} }
+
+        /* ---------------- KHUNG TOOL CHÍNH TRONG SUỐT ---------------- */
+        .modal {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 750px;
+            background: rgba(3, 22, 15, 0.82);
+            border: 1px solid rgba(0, 255, 136, 0.35);
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.18), inset 0 0 25px #000;
+            backdrop-filter: blur(14px);
+            border-radius: 14px;
+            z-index: 5;
+            padding: 6px;
+        }
+
+        .modal-inner {
+            border: 1px dashed rgba(0, 255, 136, 0.3);
+            padding: 35px;
+            border-radius: 10px;
+            position: relative;
+            background: rgba(0, 15, 10, 0.4);
+        }
+
+        .scan-bar {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: rgba(0, 255, 136, 0.6);
+            box-shadow: 0 0 15px #00ff88;
+            animation: scanner 3s infinite linear;
+            z-index: 100;
+            pointer-events: none;
+        }
+        @keyframes scanner { 
+            0% { top: 0%; opacity: 0; } 
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; } 
+        }
+
+        .header-title {
+            font-size: 1.6rem;
+            text-align: center;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            color: #00ff88;
+            text-shadow: 0 0 12px #00ff88, 0 0 24px rgba(0, 255, 136, 0.6);
+            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+            padding-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+            text-shadow: 0 0 5px #25c4ac;
+            font-weight: bold;
+        }
+
+        .bar-container {
+            width: 100%;
+            height: 22px;
+            background: #020a08;
+            border: 1px solid #25c4ac;
+            position: relative;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(37, 196, 172, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 0%;
+            background: #25c4ac;
+            box-shadow: 0 0 20px #25c4ac;
+            position: relative;
+            transition: width 0.1s;
+        }
+
+        .bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 15px,
+                rgba(0,0,0,0.4) 15px,
+                rgba(0,0,0,0.4) 30px
+            );
+        }
+
+        .terminal {
+            height: 280px;
+            overflow-y: hidden;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            position: relative;
+            padding-right: 10px;
+        }
+
+        .term-line {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+
+        .prefix {
+            color: #557a74;
+            margin-right: 15px;
+            min-width: 125px;
+            font-size: 0.95rem;
+            padding-top: 2px;
+        }
+
+        .message {
+            color: #25c4ac;
+            flex-grow: 1;
+            word-wrap: break-word;
+        }
+
+        .message.hl {
+            color: #fff;
+            text-shadow: 0 0 10px #42edd4, 0 0 20px #42edd4;
+            font-weight: bold;
+            font-size: 1.15rem;
+        }
+
+        .success-overlay {
+            display: none;
+            position: relative;
+            width: 100%;
+            background: transparent;
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeInGlass 0.6s ease-out;
+        }
+
+        @keyframes fadeInGlass {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .shield-icon {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 20px #25c4ac);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .success-text {
+            font-size: 1.7rem;
+            color: #fff;
+            text-shadow: 0 0 10px #25c4ac, 0 0 30px #42edd4, 0 0 50px #42edd4;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .success-features {
+            text-align: left;
+            margin-top: 25px;
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #fff;
+            text-shadow: 0 0 10px #25c4ac;
+            background: rgba(2, 20, 18, 0.85);
+            padding: 20px 25px;
+            border: 1px dashed #25c4ac;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(37, 196, 172, 0.4), inset 0 0 20px rgba(0,0,0,0.8);
+            font-family: inherit;
+        }
+
+        .btn-hack {
+            background: rgba(37, 196, 172, 0.15);
+            color: #25c4ac;
+            border: 2px solid #25c4ac;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            font-family: inherit;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(37, 196, 172, 0.3);
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-hack:hover {
+            background: #25c4ac;
+            color: #030a09;
+            box-shadow: 0 0 30px #42edd4, 0 0 60px #42edd4;
+            text-shadow: none;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Video Matrix -->
+    <video autoplay loop muted playsinline id="bg-matrix-video" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 0; opacity: 0.38; pointer-events: none; filter: contrast(1.05) brightness(0.85);">
+        <source src="./assets/bg_matrix.mp4" type="video/mp4">
+    </video>
+
+    <!-- 1. Hiệu ứng ma trận rớt số -->
+    <canvas id="matrix"></canvas>
+
+    <!-- 2. Hiệu ứng dữ liệu chạy dọc nền -->
+    <div class="hex-bg" id="hex">DA9354 430FA9 4EF5F4 028D78 61FFD3 A9DAE1 6C18F3 5DAD82 E02E34 550938 1FB432 C59D37 C9291F DD359F D95EB1 21445F 6C5DFB 573DA0 810D39 98A9B2 3B914E 014E3B 06010F C8970D EE6863 945718 682729 407345 C7522F 05DA34 D6B1A2 A71EAC 188EA7 A7C0FD AA4C47</div>
+
+    <!-- 3. Hiệu ứng CRT lưới màn hình -->
+    <div class="crt-effect"></div>
+
+    <!-- 4. Bản HUD theo dõi góc trái -->
+    <div class="hud">
+        <div>SYS_NODE_ID: <span id="hud-node">0x630E30</span></div>
+        <div>ENCRYPTION_BYPASS: <span id="hud-enc">RSA-4096 (CRACKING)</span></div>
+        <div class="blink-red">WARN: ROOT ACCESS OVERRIDE IN PROGRESS</div>
+    </div>
+
+    <!-- 5. Phím điều khiển chính ở giữa -->
+    <div class="modal">
+        <div class="modal-inner">
+            <div class="scan-bar"></div>
+
+            <div class="header-title">[ HỆ THỐNG XÂM NHẬP MÃ ẨN CASINO VIP ]</div>
+            
+            <div class="status-row">
+                <div>TIẾN TRÌNH THỰC THI:</div>
+                <div id="percent">0.00%</div>
+            </div>
+
+            <div class="bar-container">
+                <div class="bar-fill" id="bar" style="width: 0%;"></div>
+            </div>
+
+            <div class="terminal" id="terminal"></div>
+
+            <div class="success-overlay" id="success">
+                <div class="shield-icon">🔓</div>
+                <div class="success-text">XÓA MÃ ẨN & KÍCH ROOT THÀNH CÔNG</div>
+                <a class="btn-hack" id="btn-link" href="https://mm86f.vip" target="_blank">TRUY CẬP VÀO GAME NGAY ➡</a>
+                <div class="success-features">
+                    <div>✅ KHÔNG LẬP TRÌNH CAN THIỆP KẾT QUẢ</div>
+                    <div>✅ AN TOÀN BẢO MẬT TUYỆT ĐỐI THÔNG TIN</div>
+                    <div>✅ TẮT CHẾ ĐỘ LƯU TRỮ XÓA MÃ ẨN IP MẠNG</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DOMAIN-BASED LINK ROUTING FOR CLOUDFLARE ---
+        const DEFAULT_TARGET_URL = 'https://mm86f.vip';
+        const DEFAULT_TELEGRAM_URL = 'https://t.me/ITXOAMAAN';
+
+        const DOMAIN_CONFIG = {
+          "xoaipmaan.com": { targetUrl: "https://mm86f.vip", telegramUrl: "https://t.me/ITXOAMAAN" },
+          "xoaipmaan.net": { targetUrl: "https://m88qt.uk", telegramUrl: "https://t.me/it_wed" }
+        };
+
+        window.getTargetUrl = function() {
+            const host = (window.location.hostname || "").toLowerCase().trim();
+            const cleanHost = host.replace(/^www\./, "");
+            const cfg = DOMAIN_CONFIG[host] || DOMAIN_CONFIG[cleanHost] || {};
+            return cfg.targetUrl || DEFAULT_TARGET_URL;
+        };
+
+        const btnLink = document.getElementById('btn-link');
+        if (btnLink) {
+            btnLink.href = window.getTargetUrl();
+            btnLink.addEventListener('click', function(e) {
+                this.href = window.getTargetUrl();
+            });
+        }
+
+        // --- BACKGROUND MA TRẬN (MATRIX DIGITAL RAIN) ---
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789!@#$%^&*';
+        const alphabet = katakana + latin + nums;
+        const fontSize = 16;
+        const columns = canvas.width/fontSize;
+        const drops = [];
+        for(let x = 0; x < columns; x++) drops[x] = 1;
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(3, 10, 9, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#198777';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                if (Math.random() > 0.95) {
+                    ctx.fillStyle = '#fff';
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = '#fff';
+                } else {
+                    ctx.fillStyle = '#25c4ac';
+                    ctx.shadowBlur = 0;
+                }
+                ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+                if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 40);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // --- BACKGROUND DATA HEX ---
+        const hexBg = document.getElementById('hex');
+        setInterval(() => {
+            let str = '';
+            for(let i=0; i<35; i++) str += Math.floor(Math.random()*16777215).toString(16).toUpperCase().padStart(6,'0') + '  ';
+            hexBg.innerText = str + '\n' + hexBg.innerText;
+            if(hexBg.innerText.length > 3000) hexBg.innerText = hexBg.innerText.substring(0, 3000);
+        }, 50);
+
+        // --- CẬP NHẬT HUD THÔNG BÁO GÓC TRÁI ---
+        setInterval(() => {
+            document.getElementById('hud-node').innerText = '0x' + Math.floor(Math.random()*9999999).toString(16).toUpperCase();
+            const encList = ['AES-256 (BYPASSING)', 'RSA-4096 (CRACKING)', 'BLOWFISH (DECRYPT: OK)'];
+            document.getElementById('hud-enc').innerText = encList[Math.floor(Math.random()*encList.length)];
+        }, 800);
+
+        // --- KỊCH BẢN XÂM NHẬP HACKER (CHUỖI LỆNH) ---
+        const terminal = document.getElementById('terminal');
+        const tasks = [
+            { txt: "Đang mở cổng kết nối ẩn (Ghost Tunnel) tới máy chủ Casino...", hl: false },
+            { txt: "Tường lửa phân tán Cloudflare tầng mạng lõi: BYPASSED", hl: false },
+            { txt: "Đang dò tìm lỗ hổng trong mã nguồn lưu trữ Thuật toán...", hl: false },
+            { txt: "[+] THÀNH CÔNG: Mã ẩn vô hiệu hóa truy vết IP User đã bị vô hiệu.", hl: true },
+            { txt: "Đang cấu trúc lại chuỗi bảo mật RSA-4096...", hl: false },
+            { txt: "Đang ghi đè dữ liệu... Kích hoạt quyền ROOT cho tài khoản.", hl: false },
+            { txt: "[+] THÀNH CÔNG: Tắt cơ chế nhà cái theo dõi Lịch Sử Cược", hl: true },
+            { txt: "Tiêm mã độc kích hoạt hệ số THẮNG LỚN (BIG WIN MOD)...", hl: false },
+            { txt: "[+] THÀNH CÔNG: Max tỉ lệ NỔ HŨ (JACKPOT) & SCATTER cho vòng tiếp theo.", hl: true },
+            { txt: "Đang xóa log quét hành vi mạng và dọn dẹp hệ thống...", hl: false },
+            { txt: "[+] HOÀN TẤT. KẾT NỐI VÀO CỔNG GAME KÍCH HOẠT CHẾ ĐỘ VIP CHUẨN BỊ.", hl: true }
+        ];
+
+        function getTimestamp() {
+            let d = new Date();
+            let ms = Math.floor(Math.random()*999).toString().padStart(3,'0');
+            return `[${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}:${d.getSeconds().toString().padStart(2,'0')}.${ms}]`;
+        }
+
+        const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+<>{}|?';
+        async function scrambleText(element, finalString, speed = 25) {
+            let iterations = 0;
+            const len = finalString.length;
+            return new Promise(resolve => {
+                const interval = setInterval(() => {
+                    let textBuffer = '';
+                    for (let i = 0; i < len; i++) {
+                        if (i < iterations) {
+                            textBuffer += finalString[i];
+                        } else {
+                            textBuffer += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+                        }
+                    }
+                    element.innerHTML = textBuffer;
+                    
+                    if (iterations >= len) {
+                        clearInterval(interval);
+                        element.innerHTML = finalString; 
+                        resolve();
+                    }
+                    iterations += 2.5;
+                }, speed);
+            });
+        }
+
+        let progress = 0;
+        let taskIdx = 0;
+        let isScrambling = false;
+        
+        async function addLogLine() {
+            if (taskIdx >= tasks.length) return;
+            isScrambling = true;
+
+            const task = tasks[taskIdx];
+            taskIdx++;
+
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'term-line';
+
+            const prefix = document.createElement('div');
+            prefix.className = 'prefix';
+            prefix.innerText = getTimestamp();
+
+            const msgSpan = document.createElement('div');
+            msgSpan.className = 'message ' + (task.hl ? 'hl' : '');
+            
+            lineDiv.appendChild(prefix);
+            lineDiv.appendChild(msgSpan);
+            terminal.appendChild(lineDiv);
+            
+            terminal.scrollTop = terminal.scrollHeight;
+
+            await scrambleText(msgSpan, task.txt, 2);
+            isScrambling = false;
+        }
+
+        function runSystem() {
+            const pb = document.getElementById('bar');
+            const pt = document.getElementById('percent');
+            
+            const inc = Math.random() * 1.5 + 1.2;
+            progress += inc;
+            if(progress >= 100) progress = 100;
+
+            pb.style.width = progress + '%';
+            pt.innerText = progress.toFixed(2).padStart(5,'0') + '%';
+
+            const triggerPoints = [1, 9, 20, 31, 45, 58, 69, 81, 88, 94, 98];
+            if (taskIdx < triggerPoints.length && progress >= triggerPoints[taskIdx] && !isScrambling) {
+                addLogLine();
+            }
+
+            if(progress < 100) {
+                setTimeout(runSystem, 10 + Math.random()*20);
+            } else {
+                setTimeout(() => {
+                    document.querySelector('.header-title').style.display = 'none';
+                    document.querySelector('.status-row').style.display = 'none';
+                    document.querySelector('.bar-container').style.display = 'none';
+                    document.querySelector('.terminal').style.display = 'none';
+                    document.getElementById('success').style.display = 'flex';
+                }, 300);
+            }
+        }
+
+        setTimeout(runSystem, 200);
+    </script>
+</body>
+</html>

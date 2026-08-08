@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" width="240" height="90">
+  <defs>
+    <linearGradient id="rrBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0288d1"/>
+      <stop offset="100%" stop-color="#01579b"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="90" rx="8" fill="url(#rrBg)"/>
+  <g transform="translate(100, 6)">
+    <path d="M5 18 L0 4 L12 10 L20 0 L28 10 L40 4 L35 18 Z" fill="#ffffff"/>
+    <circle cx="20" cy="12" r="3" fill="#e53935"/>
+  </g>
+  <text x="120" y="66" font-family="'Arial Black', sans-serif" font-weight="900" font-size="44" fill="#ffffff" text-anchor="middle" letter-spacing="1">RR88</text>
+</svg>
